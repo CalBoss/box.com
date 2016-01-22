@@ -14,7 +14,10 @@ execfile('token/client.txt')
 #load the existing token that needs to be refreshed (saved in get_access_token.py)
 j = js.loads(file(fname,'r').read())
 
-print(j)
+#print(j)
+print("Old access_token: "+j['access_token'])
+print("Old refresh token: "+j['refresh_token'])
+print("Here are the new Tokens: ")
 
 d = {'grant_type': "refresh_token",
      'refresh_token': j['refresh_token'],
@@ -24,7 +27,9 @@ d = {'grant_type': "refresh_token",
 
 r = requests.post(tok_url,data=d) #data is for posts, #params is for get
 resp = r.json()
-print(resp)
+#print(resp)
+print("New access_token: "+resp['access_token'])
+print("New refresh token: "+resp['refresh_token'])
 #now save to file this output.
 #this will overwrite previously saved token. 
 with open('token/access_token.json','w') as f:
