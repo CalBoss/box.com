@@ -23,29 +23,33 @@ python refresh_access_token.py
 ```
 
 #API Calls
-##Monitor Events
+
+##Upload a file
+This script uploads a local file to your box.com account. Useful for uploading new files to a remote box folder.
+```
+python box.com/apicalls/uploadfile.py /path/to/file.txt BOX_DEST_FOLDER_ID 
+```
+
+##Update a file
+This script uploads a local file to your box.com account. Useful for automating backups.
+```
+python box.com/apicalls/updatefile.py /path/to/file.txt BOX_DEST_FOLDER_ID BOX_EXIST_FILE_ID 
+```
+##View folder Content
+This script will give you all content file information in a given folder.
+```
+python box.com/apicalls/foldercontent.py BOX_EXIST_FOLDER_ID
+```
+##Lock files [ Not currently working it has a bug]
+This script locks or unlocks all the files in a given folder (including all the sub folders, and sub-sub folders etc.)
+```
+python box.com/apicalls/lockfiles.py
+```
+##Monitor Events [Still not working]
 A script to monitor events on a given folder in box.com. It will print to screen certain 'allowed' or 'disallowed' events as detailed in whitelist.py. The script is designed to be deployed through cron, every workday, say, at 9am.
 ```
 python box.com/apicalls/monitor/print_events.py
 ```
 ```
 0 9 * * 1-5	python ~/box.com/apicalls/monitor/print_events.py
-```
-
-##Upload a file
-This script uploads a local file to your box.com account. Useful for uploading new files to a remote box folder.
-```
-python box.com/apicalls/upload_file.py /path/to/file.txt BOX_DEST_FOLDER_ID 
-```
-
-##Update a file
-This script uploads a local file to your box.com account. Useful for automating backups.
-```
-python box.com/apicalls/upload_file.py /path/to/file.txt BOX_DEST_FOLDER_ID BOX_EXIST_FILE_ID 
-```
-
-##Lock files
-This script locks or unlocks all the files in a given folder (including all the sub folders, and sub-sub folders etc.)
-```
-python box.com/apicalls/lockfiles.py
 ```
