@@ -9,7 +9,7 @@ import json
 
 
 if len(sys.argv) != 4: #first element is script name. 
-    sys.exit("Aborting. You must provide in this order: filename path and folder id and existing file id (so it can be replaced if already exists)")
+    sys.exit("Aborting. You must provide in this order: filename path and folder id and existing file id (so it can be replaced)")
 else:
     fname = sys.argv[1]
     fid = sys.argv[2]
