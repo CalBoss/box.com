@@ -24,6 +24,12 @@ python refresh_access_token.py
 
 #API Calls
 
+##Create a Folder
+This script Creates a Folder inside a given directory.
+```
+python box.com/apicalls/createfolder.py NAME_OF_NEW_FOLDER DESTINATION_OF_DIRECTORY_ID 
+```
+
 ##Upload a file
 This script uploads a local file to your box.com account. Useful for uploading new files to a remote box folder.
 ```
