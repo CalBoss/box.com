@@ -1,9 +1,10 @@
 import requests
-import sys, json, os
+import sys, os
+import json
 
-fid = "12345678" #paste in manually here the folder ID you want to lock. Available from the URL on box.com
+fid = "6213428277" #paste in manually here the folder ID you want to lock. Available from the URL on box.com
 
-d = {"lock": {"expires_at":"2013-01-07"}} # set this to "expires_at":"2013-01-07" to unlock a file, set this to a date in the future, to put an expiration date for the lock.
+d = {"lock": {"expires_at":"2016-01-22"}} # set this to "expires_at":"2013-01-07" to unlock a file, set this to a date in the future, to put an expiration date for the lock.
 
 access_token = json.loads(open('../token/access_token.json').read())['access_token']
 
@@ -18,7 +19,8 @@ lock_url = "https://api.box.com/2.0/files/%s?fields=lock"
 
 resp = requests.get(fold_url % fid, headers=header)
 print("Initial api call to main folder, response code: %s" % resp.status_code)
-files = resp.json()['entries'] 
+files = resp.json()['entries']
+print files
 #files = resp.json()['entries'][0:1] #to test, use [10:11] here to pick only the 11th file say. 
 
 def lock_files(filelist):
