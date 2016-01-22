@@ -31,7 +31,14 @@ python box.com/apicalls/monitor/print_events.py
 ```
 0 9 * * 1-5	python ~/box.com/apicalls/monitor/print_events.py
 ```
+
 ##Upload a file
+This script uploads a local file to your box.com account. Useful for uploading new files to a remote box folder.
+```
+python box.com/apicalls/upload_file.py /path/to/file.txt BOX_DEST_FOLDER_ID 
+```
+
+##Update a file
 This script uploads a local file to your box.com account. Useful for automating backups.
 ```
 python box.com/apicalls/upload_file.py /path/to/file.txt BOX_DEST_FOLDER_ID BOX_EXIST_FILE_ID 
