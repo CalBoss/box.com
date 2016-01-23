@@ -1,6 +1,6 @@
 import requests
 import sys, os
-import json
+import json  # will add pretty print nested hash
 
 #lookup folder content for a give folder/subfolder
 #Takes 1 argument: 1. Folder ID
@@ -26,5 +26,7 @@ fold_url = "https://api.box.com/2.0/folders/%s/items?"
 resp = requests.get(fold_url % fid, headers=header)
 print("Initial api call to main folder, response code: %s" % resp.status_code)
 files = resp.json()['entries']
-print files
+#print files
+content=(json.dumps(files,indent=1)) # Convert JSON to Python nested dictionary/listi & "indent=1" will print nested hash
+print(content)
 #files = resp.json()['entries'][0:1] #to test, use [10:11] here to pick only the 11th file say.
