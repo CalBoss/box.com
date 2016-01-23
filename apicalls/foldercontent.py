@@ -27,6 +27,6 @@ resp = requests.get(fold_url % fid, headers=header)
 print("Initial api call to main folder, response code: %s" % resp.status_code)
 files = resp.json()['entries']
 #print files
-content=(json.dumps(files,indent=1)) # Convert JSON to Python nested dictionary/listi & "indent=1" will print nested hash
+content=(json.dumps(files,indent=1)) # Convert JSON to Python nested dictionary/list & "indent=1" will print nested hash
 print(content)
 #files = resp.json()['entries'][0:1] #to test, use [10:11] here to pick only the 11th file say.
