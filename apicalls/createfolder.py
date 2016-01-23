@@ -1,6 +1,7 @@
 import requests
 import sys, os
 import json
+import pprint
 
 #Create a new folder in a given folder directory in box.com
 #Takes 2 arguments: 1. The new Folder name 2. The directory ID
@@ -23,4 +24,26 @@ upload_url = "https://api.box.com/2.0/folders/"
 
 resp = requests.post(upload_url, headers=header,data=data)
 print("api call, response code: %s" % resp.status_code)
-print(resp.text)
+if resp.status_code == 409:
+	print 'That folder name has been used before. Please try with a different name.'
+#print(resp.text)
+contentresp = resp.text
+#print(json.dumps(resp.text)) # just experimenting ways of displaying response
+#print json.dumps(resp.text, sort_keys=True, indent=2) # just experimenting ways of displaying response
+#print str(contentresp)  # just to make sure there the response is treated as a string by this python script.
+
+def get_folder_id(content):
+    finding_folder_id = content.find('folder","id":')
+    if finding_folder_id == -1: 
+        return None, 0
+    start_folder_id = content.find('folder","id":', finding_folder_id) + 15
+    end_folder_id = content.find('"', start_folder_id + 1)
+    folder_id = content[start_folder_id-1:end_folder_id]
+    print ('Folder ID = ' + folder_id)
+    return folder_id, end_folder_id
+if resp.status_code == 201:
+    print ('Folder Created succesfully!!!')
+if resp.status_code == 404:
+    print ('It appears that you have used and Invalid Directory ID parameter.')
+    print ('Please try again')
+get_folder_id(contentresp)
