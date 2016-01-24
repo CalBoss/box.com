@@ -40,6 +40,7 @@ print("api call, response code: %s" % resp.status_code)
 if resp.status_code == 401:
     print ('Your access_token has expired refresh it with "refresh_access_token.py" script.')
 #print(resp.text) # used for testing It will give the entire response message back from the API
+print type(resp.text)
 
 contentresp = resp.text
 
@@ -54,4 +55,17 @@ if resp.status_code == 409:  # this was originally a status code extracted from 
 
 get_file_id(contentresp)
 
+def get_file_version(content):  # a function to extract the assigned file ID
+    finding_file_version = content.find('"etag":"')
+    if finding_file_version == -1: 
+        return None, 0
+    start_file_version = content.find('"etag":"', finding_file_version) + 8
+    end_file_version = content.find('"', start_file_version + 1)
+    version = (content[start_file_version:end_file_version])
+    unicorn = unichr(2)
+    file_version = version + unicorn # since in Box that seems to be the logic vesion 1 is == to etag: "0"
+    print ('Updated and label as Version = ' + file_version)
+    return file_version, end_file_version
+
+get_file_version(contentresp)
 
