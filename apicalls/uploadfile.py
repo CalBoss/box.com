@@ -25,6 +25,28 @@ upload_url = "https://upload.box.com/api/2.0/files/content"
 
 resp = requests.post(upload_url, headers=header,data=data,files=files)
 print("api call, response code: %s" % resp.status_code)
-print(resp.text)
+#print(resp.text)
 
+contentresp = resp.text
 
+def get_file_id(content):
+    finding_file_id = content.find('"file","id"')
+    if finding_file_id == -1: 
+        return None, 0
+    start_file_id = content.find('"file","id"', finding_file_id) + 13
+    end_file_id = content.find('"', start_file_id + 1)
+    file_id = content[start_file_id:end_file_id]
+    print ('File ID = ' + file_id)
+    return file_id, end_file_id
+if resp.status_code == 401:
+    print ('Your access_token has expired refresh it with "refresh_access_token.py" script.')
+if resp.status_code == 201:
+    print ('File uploaded succesfully!!!')
+if resp.status_code == 404:
+    print ('It appears that you have used and Invalid Directory ID parameter.')
+    print ('Please try again')
+if resp.status_code == 409:
+    print ('It appears that this file or a file with the same name has already been uploaded')
+    print ('Did you mean to do that? - If not Please try again')
+
+get_file_id(contentresp)
