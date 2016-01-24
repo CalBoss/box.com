@@ -25,8 +25,9 @@ upload_url = "https://upload.box.com/api/2.0/files/content"
 
 resp = requests.post(upload_url, headers=header,data=data,files=files)
 print("api call, response code: %s" % resp.status_code)
+if resp.status_code == 401:
+    print ('Your access_token has expired refresh it with "refresh_access_token.py" script.')
 #print(resp.text)
-
 contentresp = resp.text
 
 def get_file_id(content):
@@ -38,8 +39,6 @@ def get_file_id(content):
     file_id = content[start_file_id:end_file_id]
     print ('File ID = ' + file_id)
     return file_id, end_file_id
-if resp.status_code == 401:
-    print ('Your access_token has expired refresh it with "refresh_access_token.py" script.')
 if resp.status_code == 201:
     print ('File uploaded succesfully!!!')
 if resp.status_code == 404:
@@ -50,3 +49,6 @@ if resp.status_code == 409:
     print ('Did you mean to do that? - If not Please try again')
 
 get_file_id(contentresp)
+
+
+
