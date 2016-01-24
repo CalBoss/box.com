@@ -19,6 +19,8 @@ lock_url = "https://api.box.com/2.0/files/%s?fields=lock"
 
 resp = requests.get(fold_url % fid, headers=header)
 print("Initial api call to main folder, response code: %s" % resp.status_code)
+if resp.status_code == 401:
+    print ('Your access_token has expired refresh it with "refresh_access_token.py" script.')
 files = resp.json()['entries']
 print files
 #files = resp.json()['entries'][0:1] #to test, use [10:11] here to pick only the 11th file say. 

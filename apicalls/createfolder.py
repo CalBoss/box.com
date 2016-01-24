@@ -24,6 +24,8 @@ upload_url = "https://api.box.com/2.0/folders/"
 
 resp = requests.post(upload_url, headers=header,data=data)
 print("api call, response code: %s" % resp.status_code)
+if resp.status_code == 401:
+    print ('Your access_token has expired refresh it with "refresh_access_token.py" script.')
 if resp.status_code == 409:
 	print 'That folder name has been used before. Please try with a different name.'
 #print(resp.text)

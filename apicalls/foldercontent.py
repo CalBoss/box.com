@@ -25,6 +25,8 @@ fold_url = "https://api.box.com/2.0/folders/%s/items?"
 
 resp = requests.get(fold_url % fid, headers=header)
 print("Initial api call to main folder, response code: %s" % resp.status_code)
+if resp.status_code == 401:
+    print ('Your access_token has expired refresh it with "refresh_access_token.py" script.')
 files = resp.json()['entries']
 #print files
 content=(json.dumps(files,indent=1)) # Convert JSON to Python nested dictionary/list & "indent=1" will print nested hash
