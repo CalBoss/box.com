@@ -11,7 +11,7 @@ import json
 #$ python downloadfile.py 50894374961
 
 if len(sys.argv) != 3: #first element is script name. 
-    sys.exit("Aborting. You must provide file ID and a file name to download a file from box.com please try again")
+    sys.exit("Aborting. You must provide 2 arguments with this script: file ID and a file name (in that order) please try again")
 else:
     fid = sys.argv[1]
     fname = sys.argv[2]
