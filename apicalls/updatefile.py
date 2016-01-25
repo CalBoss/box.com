@@ -16,6 +16,18 @@ def get_file_id(content):  # a function to extract the assigned file ID
     print ('File ID = ' + file_id)
     return file_id, end_file_id
 
+def get_file_version(content):  # a function to extract the assigned file ID
+    finding_file_version = content.find('"etag":"')
+    if finding_file_version == -1: 
+        return None, 0
+    start_file_version = content.find('"etag":"', finding_file_version) + 8
+    end_file_version = content.find('"', start_file_version + 1)
+    version = (content[start_file_version:end_file_version])
+    a = str('1')    # For some reason the value given by the API is on version behind what is shown in box.com for the given file version
+    file_version = int(a) + int(version) 
+    print 'Label as Version =',file_version
+    return file_version, end_file_version
+
 if len(sys.argv) != 3: #first element is script name. 
     sys.exit("Aborting. You must provide in this order: filename path and folder id and existing file id (so it can be replaced)")
 else:
@@ -24,8 +36,8 @@ else:
     flid = 0
     exist_id = sys.argv[2]#originally 3 since flid used to be obtained through commented line 23
 
-data = {"parent_id": flid}
-files = {"filename": open(fname,'rb') } #flid is name of folder in box you are uploading to. fname is name of file to upload (given as argument). 
+data = {"parent_id": flid}#flid is name of folder in box you are uploading to. fname is name of file to upload (given as argument). 
+files = {"filename": open(fname,'rb') }
 
 access_token = json.loads(open('../token/access_token.json').read())['access_token']
 
@@ -40,8 +52,7 @@ print("api call, response code: %s" % resp.status_code)
 if resp.status_code == 401:
     print ('Your access_token has expired refresh it with "refresh_access_token.py" script.')
 #print(resp.text) # used for testing It will give the entire response message back from the API
-print type(resp.text)
-
+#print type(resp.text)
 contentresp = resp.text
 
 if resp.status_code == 201:
@@ -54,18 +65,5 @@ if resp.status_code == 409:  # this was originally a status code extracted from 
     print ('Did you mean to do that? - If not Please try again')
 
 get_file_id(contentresp)
-
-def get_file_version(content):  # a function to extract the assigned file ID
-    finding_file_version = content.find('"etag":"')
-    if finding_file_version == -1: 
-        return None, 0
-    start_file_version = content.find('"etag":"', finding_file_version) + 8
-    end_file_version = content.find('"', start_file_version + 1)
-    version = (content[start_file_version:end_file_version])
-    unicorn = unichr(2)
-    file_version = version + unicorn # since in Box that seems to be the logic vesion 1 is == to etag: "0"
-    print ('Updated and label as Version = ' + file_version)
-    return file_version, end_file_version
-
 get_file_version(contentresp)
 
