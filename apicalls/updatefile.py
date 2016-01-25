@@ -44,6 +44,7 @@ access_token = json.loads(open('../token/access_token.json').read())['access_tok
 header = {'Authorization':'Bearer %s' % access_token}
 
 upload_url = "https://upload.box.com/api/2.0/files/%s/content"
+print (upload_url)
 
 #this next line is the original one that used the 3 argument that doesn't seem to matter when updating a file
 resp = requests.post(upload_url % exist_id, headers=header,data=data,files=files)
