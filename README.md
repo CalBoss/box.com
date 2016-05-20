@@ -31,6 +31,9 @@ python get_access_token.py "pastecodefromlinkabovehere"
 python refresh_access_token.py
 ```
 NOTE: For More info on how to complete the above initial process for your local app watch this video:  https://www.youtube.com/watch?v=ha26tN8amI0
+
+<hr>
+
 #API Calls
 
 ##Create a Folder
