@@ -14,13 +14,13 @@ cpw = "paste in your client secret here'
 	[Click this link to generate launch box login and generate first authorization code](https://app.box.com/api/oauth2/authorize?response_type=code&client_id=PASTE_CLIENT_ID_HERE&state=security_token%random_string_987654321 "Box.com login")
 
 	you will have to replace the "[PASTE_CLIENT_ID_HERE]" with your own Box configured application's "client_id".
-	```
-	https://app.box.com/api/oauth2/authorize?response_type=code&client_id=[PASTE_CLIENT_ID_HERE]&state=security_token%random_string_987654321
-	```
+```
+https://app.box.com/api/oauth2/authorize?response_type=code&client_id=[PASTE_CLIENT_ID_HERE]&state=security_token%random_string_987654321
+```
  
 4. After logging in and authorizing your app by clicking on the <p><image src="https://download.trstone.com/productsupport/images/grant_access_to_box.png"></p> button, you will then see this:
 
-	<p align="center"><img src="https://download.trstone.com/productsupport/images/box_autho_code.png" width="350"/></p>
+	<p align="center"><img src="https://download.trstone.com/productsupport/images/box_autho_code.png" width="650"/></p>
 
 	Copy the Authorization code from the address bar, and paste it as a single argument as shown below.
 ```
@@ -30,7 +30,7 @@ python get_access_token.py "pastecodefromlinkabovehere"
 ```
 python refresh_access_token.py
 ```
-
+NOTE: For More info on how to complete the above initial process for your local app watch this video:  https://www.youtube.com/watch?v=ha26tN8amI0
 #API Calls
 
 ##Create a Folder
