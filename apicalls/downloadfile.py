@@ -1,6 +1,7 @@
 import requests
 import sys
 import json
+import os
 
 #Downloads a given box.com file to your local machine.
 #Takes 2 argument:
@@ -29,12 +30,17 @@ if resp.status_code == 401:
 if resp.status_code == 200:
     #print "file content ---:" # just used for testing
     #print(resp.text) # just used for testing
-    file = open('files/downloaded/text2.xls','w') #testing hardcode file name
-    file = open('files/downloaded/'+fname+'','w')
+    #file = open('files/downloaded/text2.xls','w') #testing hardcode file name
+    file_path = 'downloads/'
+    if not os.path.exists(file_path):#this what only been tested in OS X 10.6
+        os.makedirs(file_path)
+        print "creating destination directory"
+    
+    file = open(file_path+fname+'','w')
     file.write(resp.content)
     file.close()
     print "file downloaded successfully!"
 if resp.status_code == 404:
     #print (resp.text)
-    print ('Could not find the specified resource.')
+    print ('Could not find the specified ID file in the system.')
     print ('Are you sure you have the correct file ID? Please try again.')

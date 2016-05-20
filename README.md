@@ -67,8 +67,12 @@ python box.com/apicalls/foldercontent.py BOX_EXIST_FOLDER_ID
 ##Download a file
 This script downloads a given file from box.com. This script takes 2 arguments in this order:
 * File ID for the file you want to download
-* File name with the corresponding file extention
-NOTE:  At this point the download location internally is hard-coded: currently set to "files/downloaded/" (the location would have to be manually created for now)
+* File name with the corresponding file extention. It doesn't necessarily have to be the same name but it must be have the same extention. Changing the extenstion from the original file in Box will either corrupt or distroy it's content.
+* File would be downloaded to a destination directory called "Downloads/" it will auto create the directory if not in place.
+
+NOTES:  
+	the autocreation of the downloads folder has only been tested in 2.7.11 python on OS X 10.11.  since the script is hard coded to this path you will have to update the script to make it work with our own destination directory.
+	If you use a file name for a file already in the destination folder then its content would be overwritten by the content of file being used in the API.
 ```
 python box.com/apicalls/uploadfile.py /path/to/file.txt BOX_DEST_FOLDER_ID
 ```

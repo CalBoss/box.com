@@ -10,7 +10,6 @@ fname = 'token/access_token.json'
 tok_url = "https://www.box.com/api/oauth2/token"
 execfile('token/client.txt')
 
-
 #load the existing token that needs to be refreshed (saved in get_access_token.py)
 j = js.loads(file(fname,'r').read())
 
