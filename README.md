@@ -41,7 +41,7 @@ This script Creates a Folder inside a given directory. it takes 2 arguments in t
 * Name of new folder
 * Destination folder ID
 ```
-python box.com/apicalls/createfolder.py NAME_OF_NEW_FOLDER DESTINATION_OF_DIRECTORY_ID 
+python box.com/apicalls/createfolder.py [NAME_OF_NEW_FOLDER DESTINATION_OF_DIRECTORY_ID] 
 ```
 
 ##Upload a file
@@ -49,20 +49,21 @@ This script uploads a local file to your box.com account. Useful for uploading n
 * Local system filepath with filename
 * Box.com Destination ID folder [Using 0 would place files at root]
 ```
-python box.com/apicalls/uploadfile.py /path/to/file.txt BOX_DEST_FOLDER_ID
+python box.com/apicalls/uploadfile.py /local_path/to/file.txt [BOX_DEST_FOLDER_ID]
 ```
 ##Update a file
 This script uploads a local file to your box.com account. Useful for automating backups. This script takes 2 arguments in this order:
 * local system filepath with filename
 * File ID for the file you want to update
 ```
-python box.com/apicalls/updatefile.py /path/to/file.txt BOX_EXIST_FILE_ID 
+python box.com/apicalls/updatefile.py /local_path/to/file.txt [BOX_EXIST_FILE_ID] 
 ```
+NOTE: Make sure you use the same extension as the file you would like to update.
 ##View folder Content
 This script will give you all content file information in a given folder. This script takes only one arguement:
 * Folder ID for the folder you want to look up.
 ```
-python box.com/apicalls/foldercontent.py BOX_EXIST_FOLDER_ID
+python box.com/apicalls/foldercontent.py [BOX_EXIST_FOLDER_ID]
 ```
 ##Download a file
 This script downloads a given file from box.com. This script takes 2 arguments in this order:
@@ -74,7 +75,7 @@ NOTES:
 	the autocreation of the downloads folder has only been tested in 2.7.11 python on OS X 10.11.  since the script is hard coded to this path you will have to update the script to make it work with our own destination directory.
 	If you use a file name for a file already in the destination folder then its content would be overwritten by the content of file being used in the API.
 ```
-python box.com/apicalls/uploadfile.py /path/to/file.txt BOX_DEST_FOLDER_ID
+python box.com/apicalls/downloadfile.py [FILE ID #] filename
 ```
 ##Lock files [ Not currently working it has a bug]
 This script locks or unlocks all the files in a given folder (including all the sub folders, and sub-sub folders etc.)
